@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#EAD8FC">
+  <title>Raad Het!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ HOME ============ -->
+  <div id="screen-home" class="screen active">
+    <div class="center">
+      <div class="logo">🎭</div>
+      <h1>Raad Het!</h1>
+      <p class="tagline">Houd de telefoon boven je hoofd en laat anderen raden!</p>
+      <button class="btn btn-primary" onclick="showCategories()">🎮 Spelen!</button>
+    </div>
+  </div>
+
+  <!-- ============ CATEGORIEËN ============ -->
+  <div id="screen-categories" class="screen">
+    <div class="topbar">
+      <button class="btn-back" onclick="showHome()">←</button>
+      <h2>Kies een categorie</h2>
+    </div>
+    <div id="category-grid" class="category-grid"></div>
+  </div>
+
+  <!-- ============ UITLEG ============ -->
+  <div id="screen-instructions" class="screen">
+    <div class="center">
+      <div id="sel-icon" class="big-icon">🦁</div>
+      <h2 id="sel-name">Dieren</h2>
+
+      <div class="how-to">
+        <div class="hw-row">
+          <span class="hw-icon">📱</span>
+          <p>Houd de telefoon boven je hoofd — jij mag niet kijken!</p>
+        </div>
+        <div class="hw-row">
+          <span class="hw-icon">🗣️</span>
+          <p>De rest geeft aanwijzingen (geen namen noemen!)</p>
+        </div>
+        <div class="hw-row">
+          <span class="hw-icon">⬇️</span>
+          <p><b>Kantelen naar voren</b> = goed geraden ✓</p>
+        </div>
+        <div class="hw-row">
+          <span class="hw-icon">⬆️</span>
+          <p><b>Kantelen naar achteren</b> = overslaan →</p>
+        </div>
+        <div class="hw-row">
+          <span class="hw-icon">⏱️</span>
+          <p>60 seconden — zoveel mogelijk goed raden!</p>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" onclick="startGame()">▶ Start!</button>
+      <button class="btn btn-ghost" onclick="showCategories()">Andere categorie</button>
+    </div>
+  </div>
+
+  <!-- ============ SPELEN ============ -->
+  <div id="screen-game" class="screen">
+
+    <div class="game-top">
+      <div id="timer" class="timer">60</div>
+      <div id="score-display" class="score-pill">0 goed</div>
+    </div>
+
+    <div class="card-wrap">
+      <div id="card" class="card">
+        <div id="card-word" class="card-word">…</div>
+      </div>
+    </div>
+
+    <!-- Tap-knoppen (altijd zichtbaar als fallback) -->
+    <div class="game-btns">
+      <button class="btn-manual btn-skip"    onclick="manualSkip()">→ Overslaan</button>
+      <button class="btn-manual btn-correct" onclick="manualCorrect()">✓ Goed!</button>
+    </div>
+
+    <p id="tilt-hint" class="tilt-hint hidden">Of kantelen: omlaag = goed · omhoog = overslaan</p>
+
+    <div class="game-footer">
+      <button class="btn btn-small" onclick="endGame()">Stop</button>
+    </div>
+
+    <!-- Kleur-flash bij antwoord -->
+    <div id="feedback" class="feedback">
+      <div id="fb-icon" class="fb-icon">✓</div>
+      <div id="fb-text" class="fb-text">Goed!</div>
+    </div>
+
+  </div>
+
+  <!-- ============ RESULTAAT ============ -->
+  <div id="screen-results" class="screen">
+    <div class="center">
+      <div class="result-emoji">🎉</div>
+      <h2>Tijd is om!</h2>
+
+      <div class="big-score">
+        <div id="result-stars" class="stars">⭐⭐⭐</div>
+        <div id="final-correct" class="num">0</div>
+        <div class="lbl">goed geraden</div>
+      </div>
+
+      <p id="final-skipped" class="skipped-count">0 overgeslagen</p>
+
+      <div id="results-list" class="results-list"></div>
+
+      <button class="btn btn-primary" onclick="playAgain()">🔄 Nog een ronde!</button>
+      <button class="btn btn-ghost"   onclick="showCategories()">Andere categorie</button>
+      <button class="btn btn-ghost"   onclick="showHome()">Naar begin</button>
+    </div>
+  </div>
+
+  <script src="js/cards.js"></script>
+  <script src="js/tilt.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
