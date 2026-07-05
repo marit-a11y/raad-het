@@ -59,7 +59,7 @@ async function beginRound() {
   correctCount = 0;
   skippedCount = 0;
   gameResults = [];
-  timeLeft = 60;
+  timeLeft = 30;
 
   showScreen('screen-game');
   updateTimer();
@@ -111,9 +111,8 @@ function showCard() {
     gameCards = buildDeck();
     cardIndex = 0;
   }
-  const { word, icon } = gameCards[cardIndex];
+  const { word } = gameCards[cardIndex];
   document.getElementById('card-word').textContent = word;
-  document.getElementById('card-cat').textContent  = icon;
   document.getElementById('card').className = 'card';
 }
 
@@ -157,7 +156,7 @@ function endGame() {
   _stopGame();
   document.getElementById('final-correct').textContent = correctCount;
   document.getElementById('final-skipped').textContent = skippedCount + ' overgeslagen';
-  const starCount = correctCount >= 12 ? 3 : correctCount >= 6 ? 2 : 1;
+  const starCount = correctCount >= 6 ? 3 : correctCount >= 3 ? 2 : 1;
   const starsEl = document.getElementById('result-stars');
   starsEl.innerHTML = Array.from({length: 3}, (_, i) =>
     `<i data-lucide="star" class="icon-star${i < starCount ? ' star-filled' : ''}"></i>`
