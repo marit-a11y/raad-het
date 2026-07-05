@@ -86,6 +86,10 @@ class TiltDetector {
 
     this.prev = { beta, gamma };
 
+    // Debug display
+    const dbg = document.getElementById('debug');
+    if (dbg) dbg.textContent = `β${beta.toFixed(0)} γ${gamma.toFixed(0)} | Δβ${dBeta.toFixed(0)} Δγ${dGamma.toFixed(0)} | vβ${velBeta.toFixed(1)} vγ${velGamma.toFixed(1)}`;
+
     // Trigger als: snelle beweging (velocity) ÉN al ver genoeg van neutraal
     const fastBeta  = Math.abs(velBeta)  > this.velocityThreshold && Math.abs(dBeta)  > this.angleThreshold;
     const fastGamma = Math.abs(velGamma) > this.velocityThreshold && Math.abs(dGamma) > this.angleThreshold;
