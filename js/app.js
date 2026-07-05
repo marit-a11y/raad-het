@@ -11,7 +11,18 @@ let feedbackTimer = null;
 let wakeLock = null;
 
 // ---- Init ----
-document.addEventListener('DOMContentLoaded', buildCategoryGrid);
+document.addEventListener('DOMContentLoaded', () => {
+  buildCategoryGrid();
+  _lockLandscape();
+});
+
+async function _lockLandscape() {
+  try {
+    await screen.orientation.lock('landscape');
+  } catch {
+    // iOS doesn't support lock — CSS overlay handles it
+  }
+}
 
 // ---- Screen nav ----
 function showScreen(id) {

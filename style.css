@@ -1,5 +1,30 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ---- Rotate overlay (portrait mode) ---- */
+#rotate-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 9999;
+  background: linear-gradient(155deg, #EAD8FC 0%, #FCE4D0 50%, #D0F0E4 100%);
+  align-items: center; justify-content: center;
+}
+@media (orientation: portrait) {
+  #rotate-overlay { display: flex; }
+}
+.rotate-box {
+  text-align: center; display: flex; flex-direction: column;
+  align-items: center; gap: .75rem;
+}
+.rotate-icon {
+  font-size: 4rem;
+  animation: spin90 1.2s ease-in-out infinite alternate;
+}
+@keyframes spin90 {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(90deg); }
+}
+.rotate-box p { font-size: 1.4rem; font-weight: 800; color: #4A3858; }
+.rotate-sub   { font-size: 1rem; font-weight: 500; color: #9A87B0; }
+
 :root {
   --bg:        #FEF8F2;
   --text:      #4A3858;
