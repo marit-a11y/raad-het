@@ -1,42 +1,23 @@
 // ============================================================
 // EIGEN FAMILIE-KAARTEN — pas dit zelf aan!
+// Alleen enkelvoudige woorden of namen
 // ============================================================
 
 const FAMILIE_KAARTEN = [
-  // Voeg hier namen toe van familie en vrienden die iedereen kent:
+  // Namen van familie en vrienden (voeg zelf toe!):
   "Mama", "Papa", "Opa", "Oma",
-  // Voorbeelden — vervang door echte namen uit jullie leven:
-  // "Tante Lisa", "Oom Mark", "Opa Henk", "Oma Riet",
-  // "Noor", "Lotte", "Sem",  ← vrienden van de kinderen
-
-  // Dingen die jullie thuis/samen doen:
-  "Monopoly spelen", "Zomaar dansen in de keuken",
-  "Koekjes bakken", "Films kijken op vrijdag",
-  "Fietsen naar school", "Boterhammen smeren",
-  "Kofferbak inladen voor vakantie", "Strandballen gooien",
-  "Zonnebrandcrème smeren", "Ijs halen",
-  "Sleutels kwijt zijn", "Paspoort zoeken",
-  "Bedtijd uitstellen", "Snoep stiekem pakken",
-  "In de zee springen", "Zandkasteel bouwen",
-  "Selfie maken", "TikTok kijken",
-  "Op de scooter rijden", "Boodschappen vergeten",
-  "Ruzie over de afstandsbediening",
+  // "Tante", "Oom", "Noor", "Lotte", "Sem",
 ];
 
 const THUIS_VOORWERPEN = [
-  // Dingen in jullie huis die iedereen kent:
-  "De oude fiets", "De vaatwasser", "De was vouwen",
-  "Stofzuigen", "Tafel dekken", "Afwassen",
-  "Bed opmaken", "Kamer opruimen", "Tuin harken",
-  "Auto wassen", "Boodschappen doen",
-
-  // Speelgoed/spullen thuis (voeg eigen toe!):
-  "Lego", "Puzzel", "Speelkaarten", "Tekenen",
-  "Gitaar spelen", "Piano spelen",
+  "Vaatwasser", "Stofzuiger", "Wasmachine", "Koelkast",
+  "Afstandsbediening", "Magnetron", "Trampoline",
+  "Lego", "Puzzel", "Speelkaarten", "Gitaar", "Piano",
+  "Fiets", "Scooter", "Barbecue", "Tent", "Slaapzak",
 ];
 
 // ============================================================
-// ALGEMENE CATEGORIEËN — voor kinderen van 7-11 jaar
+// ALGEMENE CATEGORIEËN
 // ============================================================
 
 const DIEREN_KAARTEN = [
@@ -46,27 +27,19 @@ const DIEREN_KAARTEN = [
   "Neushoorn", "Nijlpaard", "Vlinder", "Bij", "Spin",
   "Kikker", "Slang", "Koe", "Paard", "Schaap", "Varken",
   "Kip", "Eend", "Zwaan", "Panda", "Koala", "Kangoeroe",
-  "Zeehond", "Octopus", "Lieveheersbeestje", "Mol", "Egel",
-  "Vos", "Wolf", "Beer", "Flamingo", "Luipaard", "Kameel",
-  "Lama", "Alpaca", "Zeepaard", "Schildpad", "Salamander",
-  "Merel", "Ekster", "Specht", "Pauw", "Struisvogel",
+  "Zeehond", "Octopus", "Mol", "Egel", "Vos", "Wolf",
+  "Beer", "Flamingo", "Luipaard", "Kameel", "Lama",
+  "Zeepaard", "Salamander", "Ekster", "Specht", "Pauw",
+  "Struisvogel", "Walrus", "Bever", "Wasbeer", "Hyena",
 ];
 
 const FILMS_KAARTEN = [
-  "Frozen", "De Leeuwenkoning", "Assepoester", "Sneeuwwitje",
-  "Rapunzel", "Vaiana", "Encanto", "Coco", "Up",
-  "Toy Story", "Finding Nemo", "Monsters Inc",
-  "Shrek", "Minions", "Despicable Me", "Brave",
-  "The Incredibles", "Cars", "Wall-E", "Inside Out",
-  "Turning Red", "Luca", "Ratatouille", "Sing",
-  "Paddington", "Matilda", "Harry Potter",
-  "Jungle Boek", "Aladdin", "Mulan", "Tarzan",
-  "Winnie de Poeh", "Bambi", "Pinokkio", "Dumbo",
-  "Doornroosje", "Peter Pan", "Zootropolis",
-  "Secret Life of Pets", "Sing 2", "PAW Patrol de Film",
-  "Bluey", "SpongeBob", "Pippi Langkous",
-  "De Smurfen", "Asterix en Obelix",
-  "Alvin en de Chipmunks", "Ernies grote avontuur",
+  "Frozen", "Assepoester", "Sneeuwwitje", "Rapunzel",
+  "Vaiana", "Encanto", "Coco", "Up", "Shrek", "Minions",
+  "Brave", "Cars", "Luca", "Ratatouille", "Sing",
+  "Paddington", "Matilda", "Aladdin", "Mulan", "Tarzan",
+  "Bambi", "Pinokkio", "Dumbo", "Doornroosje", "Zootropolis",
+  "Bluey", "SpongeBob",
 ];
 
 const ETEN_KAARTEN = [
@@ -76,12 +49,10 @@ const ETEN_KAARTEN = [
   "Tomaat", "Paprika", "Kaas", "Chocolade", "Koekje",
   "Taart", "Ijs", "Wafel", "Pannenkoek", "Stroopwafel",
   "Drop", "Hagelslag", "Pindakaas", "Cornflakes",
-  "Boterham", "Soep", "Rijst", "Stamppot",
-  "Spaghetti", "Lasagne", "Salade", "Wrap",
-  "Sushi", "Hotdog", "Popcorn", "Chips",
-  "Yoghurt", "Smoothie", "Chocomel", "Limonade",
-  "Stroopwafel", "Speculaas", "Beschuit met muisjes",
-  "Oliebol", "Appelflap", "Croissant",
+  "Boterham", "Soep", "Rijst", "Stamppot", "Spaghetti",
+  "Lasagne", "Salade", "Sushi", "Hotdog", "Popcorn",
+  "Chips", "Yoghurt", "Smoothie", "Chocomel", "Speculaas",
+  "Oliebol", "Croissant", "Beschuit",
 ];
 
 const SPORT_KAARTEN = [
@@ -90,9 +61,7 @@ const SPORT_KAARTEN = [
   "Turnen", "Paardrijden", "Surfen", "Klimmen",
   "Judo", "Karate", "Tafeltennis", "Badminton",
   "Golf", "Rugby", "Hockey", "Dansen", "Ballet",
-  "Bowlen", "Frisbee gooien", "Touwtjespringen",
-  "Hinkelen", "Verstoppertje spelen", "Tikken",
-  "Touwklimmen", "Zwaaien op de schommel",
+  "Bowlen", "Hinkelen", "Tikken", "Duiken",
 ];
 
 const BEROEPEN_KAARTEN = [
@@ -102,21 +71,17 @@ const BEROEPEN_KAARTEN = [
   "Acteur", "Schrijver", "Tuinman", "Postbode",
   "Vuilnisman", "Bouwvakker", "Dierenarts",
   "Apotheker", "Boer", "Visser", "Kapper",
-  "Kassamedewerker", "Taxichauffeur", "Clown",
-  "Goochelaar", "Danser", "Fotograaf",
-  "YouTuber", "Spelontwikkelaar", "Presentator",
-  "Scheikundige", "Redder in zee", "Bewaker",
+  "Taxichauffeur", "Clown", "Goochelaar", "Danser",
+  "Fotograaf", "YouTuber", "Presentator", "Bewaker",
 ];
 
 const NATUUR_KAARTEN = [
-  "Zon", "Maan", "Sterren", "Regenboog", "Wolk", "Regen",
+  "Zon", "Maan", "Ster", "Regenboog", "Wolk", "Regen",
   "Sneeuw", "Bliksem", "Storm", "Berg", "Rivier", "Zee",
   "Meer", "Waterval", "Woestijn", "Jungle", "Bos", "Weide",
-  "Vulkaan", "Eiland", "Kust", "Tornado",
-  "Hagel", "Mist", "Dauw", "Bloem", "Boom",
-  "Gras", "Cactus", "Paddenstoel", "Steen",
-  "Zand", "Schelp", "Zeester", "Algen",
-  "Sneeuwvlok", "IJsberg", "Gletsjer",
+  "Vulkaan", "Eiland", "Kust", "Tornado", "Hagel", "Mist",
+  "Bloem", "Boom", "Gras", "Cactus", "Paddenstoel",
+  "Steen", "Zand", "Schelp", "Zeester", "IJsberg",
 ];
 
 const VOORWERPEN_KAARTEN = [
@@ -127,8 +92,7 @@ const VOORWERPEN_KAARTEN = [
   "Zonnebril", "Pet", "Helm", "Handschoenen", "Laarzen",
   "Potlood", "Schaar", "Lijm", "Verf", "Liniaal",
   "Tandenborstel", "Zeep", "Handdoek", "Spiegel",
-  "Klok", "Kalender", "Sleutels", "Portemonnee",
-  "Puzzel", "Speelgoed", "Lego", "Pop",
+  "Klok", "Sleutels", "Portemonnee", "Puzzel", "Pop",
   "Trampoline", "Tent", "Slaapzak", "Verrekijker",
 ];
 
@@ -137,76 +101,13 @@ const VOORWERPEN_KAARTEN = [
 // ============================================================
 
 const CATEGORIES = [
-  {
-    id: "familie",
-    name: "Familie & Vrienden",
-    icon: "👨‍👩‍👧",
-    color: "#FADADD",
-    colorDark: "#F5B8C0",
-    cards: FAMILIE_KAARTEN,
-  },
-  {
-    id: "dieren",
-    name: "Dieren",
-    icon: "🦁",
-    color: "#C8F0D8",
-    colorDark: "#A8E0BC",
-    cards: DIEREN_KAARTEN,
-  },
-  {
-    id: "films",
-    name: "Films & Series",
-    icon: "🎬",
-    color: "#D4CAEE",
-    colorDark: "#B8AADC",
-    cards: FILMS_KAARTEN,
-  },
-  {
-    id: "eten",
-    name: "Eten & Drinken",
-    icon: "🍕",
-    color: "#FFF0C0",
-    colorDark: "#FFE090",
-    cards: ETEN_KAARTEN,
-  },
-  {
-    id: "sport",
-    name: "Sport",
-    icon: "⚽",
-    color: "#C8DCFC",
-    colorDark: "#A8C4F8",
-    cards: SPORT_KAARTEN,
-  },
-  {
-    id: "beroepen",
-    name: "Beroepen",
-    icon: "👩‍⚕️",
-    color: "#FCD8C8",
-    colorDark: "#F8C0A8",
-    cards: BEROEPEN_KAARTEN,
-  },
-  {
-    id: "natuur",
-    name: "Natuur",
-    icon: "🌿",
-    color: "#C8F0E8",
-    colorDark: "#A8E0D8",
-    cards: NATUUR_KAARTEN,
-  },
-  {
-    id: "voorwerpen",
-    name: "Voorwerpen",
-    icon: "🎒",
-    color: "#E8D0F8",
-    colorDark: "#D0B0F0",
-    cards: VOORWERPEN_KAARTEN,
-  },
-  {
-    id: "thuis",
-    name: "Thuis & Vakantie",
-    icon: "🏖️",
-    color: "#FCE8C0",
-    colorDark: "#F8D090",
-    cards: THUIS_VOORWERPEN,
-  },
+  { id: "familie",   icon: "👨‍👩‍👧", cards: FAMILIE_KAARTEN   },
+  { id: "dieren",    icon: "🦁",     cards: DIEREN_KAARTEN    },
+  { id: "films",     icon: "🎬",     cards: FILMS_KAARTEN     },
+  { id: "eten",      icon: "🍕",     cards: ETEN_KAARTEN      },
+  { id: "sport",     icon: "⚽",     cards: SPORT_KAARTEN     },
+  { id: "beroepen",  icon: "👩‍⚕️",   cards: BEROEPEN_KAARTEN  },
+  { id: "natuur",    icon: "🌿",     cards: NATUUR_KAARTEN    },
+  { id: "voorwerpen",icon: "🎒",     cards: VOORWERPEN_KAARTEN},
+  { id: "thuis",     icon: "🏠",     cards: THUIS_VOORWERPEN  },
 ];
