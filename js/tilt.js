@@ -4,12 +4,24 @@ class TiltDetector {
     this.onSkip    = null;
     this.isActive  = false;
     this.lastTrigger = 0;
-    this.debounceMs  = 900;
-    this.prev = null;          // vorige meting
-    this.velocityThreshold = 4; // graden/meting = snelle beweging
-    this.angleThreshold    = 20; // absolute hoek vanaf neutraal
-    this.neutral = null;
+    this.debounceMs  = 850;
+    this.neutralForward = 0;
+    this.threshold = 18;
+    this.prev = 0;
+    this.velocityThreshold = 3;
     this._handler = this._handle.bind(this);
+  }
+
+  // Leest de "neus-omlaag" as correct, ongeacht landscape-richting.
+  // angle=90  (landscape-primary):   neus omlaag → gamma daalt  → gebruik -gamma
+  // angle=270 (landscape-secondary): neus omlaag → gamma stijgt → gebruik +gamma
+  _forwardTilt(e) {
+    const angle = screen.orientation?.angle ?? 0;
+    const gamma = e.gamma ?? 0;
+    const beta  = e.beta  ?? 0;
+    if (Math.abs(angle - 90)  < 45) return -gamma;
+    if (Math.abs(angle - 270) < 45) return  gamma;
+    return beta; // portret-fallback
   }
 
   needsPermissionDialog() {
@@ -28,12 +40,11 @@ class TiltDetector {
 
   start() {
     return new Promise((resolve) => {
-      this.prev    = null;
-      this.neutral = null;
+      this.isActive = false;
 
       const calibrate = (e) => {
-        this.neutral = { beta: e.beta ?? 0, gamma: e.gamma ?? 0 };
-        this.prev    = { beta: e.beta ?? 0, gamma: e.gamma ?? 0 };
+        this.neutralForward = this._forwardTilt(e);
+        this.prev = this.neutralForward;
         window.removeEventListener('deviceorientation', calibrate);
         window.removeEventListener('deviceorientationabsolute', calibrate);
         this.isActive = true;
@@ -42,14 +53,12 @@ class TiltDetector {
         resolve();
       };
 
-      // Probeer beide event-types (absolute is nauwkeuriger op Android)
       window.addEventListener('deviceorientation', calibrate);
       window.addEventListener('deviceorientationabsolute', calibrate);
 
       setTimeout(() => {
         if (!this.isActive) {
-          this.neutral = { beta: 0, gamma: 0 };
-          this.prev    = { beta: 0, gamma: 0 };
+          this.neutralForward = 0; this.prev = 0;
           window.removeEventListener('deviceorientation', calibrate);
           window.removeEventListener('deviceorientationabsolute', calibrate);
           this.isActive = true;
@@ -68,40 +77,31 @@ class TiltDetector {
   }
 
   _handle(e) {
-    if (!this.isActive || !this.prev || !this.neutral) return;
-
+    if (!this.isActive) return;
     const now = Date.now();
+
+    const forward = this._forwardTilt(e);
+    const delta   = forward - this.neutralForward;
+    const velocity = forward - this.prev;
+    this.prev = forward;
+
+    // Debug
+    const dbg = document.getElementById('debug');
+    if (dbg) {
+      const angle = screen.orientation?.angle ?? '?';
+      dbg.textContent = `↕ ${forward.toFixed(0)}° (Δ${delta.toFixed(0)} v${velocity.toFixed(1)}) angle:${angle}`;
+    }
+
     if (now - this.lastTrigger < this.debounceMs) return;
 
-    const beta  = e.beta  ?? 0;
-    const gamma = e.gamma ?? 0;
+    const fastEnough = Math.abs(velocity) > this.velocityThreshold;
+    const farEnough  = Math.abs(delta)    > this.threshold;
 
-    // Snelheid (graden veranderd t.o.v. vorige meting)
-    const velBeta  = beta  - this.prev.beta;
-    const velGamma = gamma - this.prev.gamma;
-
-    // Absolute positie t.o.v. neutraal
-    const dBeta  = beta  - this.neutral.beta;
-    const dGamma = gamma - this.neutral.gamma;
-
-    this.prev = { beta, gamma };
-
-    // Debug display
-    const dbg = document.getElementById('debug');
-    if (dbg) dbg.textContent = `β${beta.toFixed(0)} γ${gamma.toFixed(0)} | Δβ${dBeta.toFixed(0)} Δγ${dGamma.toFixed(0)} | vβ${velBeta.toFixed(1)} vγ${velGamma.toFixed(1)}`;
-
-    // Trigger als: snelle beweging (velocity) ÉN al ver genoeg van neutraal
-    const fastBeta  = Math.abs(velBeta)  > this.velocityThreshold && Math.abs(dBeta)  > this.angleThreshold;
-    const fastGamma = Math.abs(velGamma) > this.velocityThreshold && Math.abs(dGamma) > this.angleThreshold;
-
-    if (!fastBeta && !fastGamma) return;
-
-    // Welke as beweegt het meest?
-    const delta = Math.abs(dGamma) >= Math.abs(dBeta) ? dGamma : dBeta;
-
-    this.lastTrigger = now;
-    if (delta > 0) this.onCorrect?.();
-    else           this.onSkip?.();
+    if (fastEnough && farEnough) {
+      this.lastTrigger = now;
+      if (delta > 0) this.onCorrect?.(); // neus omlaag = goed
+      else           this.onSkip?.();    // neus omhoog = overslaan
+    }
   }
 }
 
