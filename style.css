@@ -9,6 +9,7 @@
 @media (orientation: portrait) { #rotate-overlay { display: flex; } }
 .rotate-box { text-align: center; display: flex; flex-direction: column; align-items: center; gap: .6rem; }
 .rotate-icon { font-size: 3.5rem; animation: spin90 1.2s ease-in-out infinite alternate; }
+.icon-rotate { width: 3rem; height: 3rem; stroke: #9A7A6A; stroke-width: 1.5; animation: spin90 1.2s ease-in-out infinite alternate; }
 @keyframes spin90 { to { transform: rotate(90deg); } }
 .rotate-box p  { font-size: 1.3rem; font-weight: 800; color: #5A3E35; }
 .rotate-sub    { font-size: .95rem; font-weight: 500; color: #9A7A6A; }
@@ -60,7 +61,16 @@ body {
 }
 .home-bg { display: none; } /* not needed */
 
-.home-logo { font-size: 3.5rem; }
+/* ---- Icons ---- */
+.icon-xl     { width: 3.2rem; height: 3.2rem; stroke: var(--taupe); stroke-width: 1.2; fill: none; }
+.icon-btn    { width: 1.1rem; height: 1.1rem; stroke: #fff;        stroke-width: 2.2; fill: none; flex-shrink: 0; }
+.icon-hw     { width: 1.3rem; height: 1.3rem; stroke: var(--taupe); stroke-width: 1.8; fill: none; flex-shrink: 0; }
+.icon-action { width: 1.8rem; height: 1.8rem; stroke: currentColor; stroke-width: 2.2; fill: none; }
+.icon-feedback { width: 5rem; height: 5rem; stroke: var(--text); stroke-width: 1.5; fill: none; }
+.icon-star          { width: 1.6rem; height: 1.6rem; stroke: var(--salmon); stroke-width: 1.8; fill: none; }
+.icon-star.star-filled { fill: var(--salmon); }
+
+.home-logo { margin-bottom: .25rem; }
 h1 {
   font-size: clamp(2.6rem, 8vw, 3.8rem);
   font-weight: 900; letter-spacing: -1.5px;
@@ -206,7 +216,7 @@ h1 {
 }
 .results-bg { display: none; }
 
-.stars { font-size: 1.8rem; letter-spacing: 4px; }
+.stars { display: flex; gap: .35rem; align-items: center; }
 
 .final-num {
   font-size: clamp(5rem, 18vw, 8rem);

@@ -108,7 +108,12 @@ function _showFeedback(correct) {
   const fb   = document.getElementById('feedback');
   const card = document.getElementById('card');
   fb.className = `feedback show ${correct ? 'fb-correct' : 'fb-skip'}`;
-  document.getElementById('fb-icon').textContent = correct ? '✓' : '→';
+
+  // Swap Lucide icon and re-render
+  const icon = document.getElementById('fb-icon');
+  icon.setAttribute('data-lucide', correct ? 'check' : 'arrow-right');
+  lucide.createIcons({ nodes: [icon] });
+
   card.classList.add(correct ? 'card-correct' : 'card-skip');
   feedbackTimer = setTimeout(() => { fb.className = 'feedback'; showCard(); }, 550);
 }
@@ -129,8 +134,12 @@ function endGame() {
   _stopGame();
   document.getElementById('final-correct').textContent = correctCount;
   document.getElementById('final-skipped').textContent = skippedCount + ' overgeslagen';
-  document.getElementById('result-stars').textContent =
-    correctCount >= 12 ? '⭐⭐⭐' : correctCount >= 6 ? '⭐⭐' : '⭐';
+  const starCount = correctCount >= 12 ? 3 : correctCount >= 6 ? 2 : 1;
+  const starsEl = document.getElementById('result-stars');
+  starsEl.innerHTML = Array.from({length: 3}, (_, i) =>
+    `<i data-lucide="star" class="icon-star${i < starCount ? ' star-filled' : ''}"></i>`
+  ).join('');
+  lucide.createIcons({ nodes: [...starsEl.querySelectorAll('[data-lucide]')] });
 
   const list = document.getElementById('results-list');
   list.innerHTML = '';

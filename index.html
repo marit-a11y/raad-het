@@ -5,20 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#C8A8F0">
+  <meta name="theme-color" content="#F5E4DC">
   <title>Raad Het!</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
 
   <!-- ============ HOME ============ -->
   <div id="screen-home" class="screen active">
-    <div class="home-bg"></div>
     <div class="center">
-      <div class="home-logo">🎭</div>
+      <div class="home-logo">
+        <i data-lucide="mic" class="icon-xl"></i>
+      </div>
       <h1>Raad Het!</h1>
       <p class="tagline">Houd de telefoon boven je hoofd<br>en laat de rest raden!</p>
-      <button class="btn btn-primary" onclick="startGame()">Spelen!</button>
+      <button class="btn btn-primary" onclick="startGame()">
+        <i data-lucide="play" class="icon-btn"></i>
+        Spelen!
+      </button>
     </div>
   </div>
 
@@ -27,12 +32,27 @@
     <div class="center">
       <h2>Hoe speel je?</h2>
       <div class="how-to">
-        <div class="hw-row"><span>📱</span><p>Houd de telefoon boven je hoofd — jij mag niet kijken!</p></div>
-        <div class="hw-row"><span>🗣️</span><p>De rest geeft aanwijzingen</p></div>
-        <div class="hw-row"><span>⬇️</span><p><b>Neus omlaag</b> = goed geraden ✓</p></div>
-        <div class="hw-row"><span>⬆️</span><p><b>Neus omhoog</b> = overslaan →</p></div>
+        <div class="hw-row">
+          <i data-lucide="smartphone" class="icon-hw"></i>
+          <p>Houd de telefoon boven je hoofd — jij mag niet kijken!</p>
+        </div>
+        <div class="hw-row">
+          <i data-lucide="message-circle" class="icon-hw"></i>
+          <p>De rest geeft aanwijzingen</p>
+        </div>
+        <div class="hw-row">
+          <i data-lucide="chevron-down" class="icon-hw"></i>
+          <p><b>Neus omlaag</b> = goed geraden</p>
+        </div>
+        <div class="hw-row">
+          <i data-lucide="chevron-up" class="icon-hw"></i>
+          <p><b>Neus omhoog</b> = overslaan</p>
+        </div>
       </div>
-      <button class="btn btn-primary" onclick="beginRound()">Start! (60 sec)</button>
+      <button class="btn btn-primary" onclick="beginRound()">
+        <i data-lucide="timer" class="icon-btn"></i>
+        Start! (60 sec)
+      </button>
     </div>
   </div>
 
@@ -46,43 +66,48 @@
 
     <div class="card-wrap">
       <div id="card" class="card">
-        <div id="card-cat" class="card-cat"></div>
         <div id="card-word" class="card-word">…</div>
       </div>
     </div>
 
     <div class="game-btns">
-      <button class="btn-action btn-skip"    onclick="manualSkip()">→</button>
-      <button class="btn-action btn-correct" onclick="manualCorrect()">✓</button>
+      <button class="btn-action btn-skip" onclick="manualSkip()">
+        <i data-lucide="arrow-right" class="icon-action"></i>
+      </button>
+      <button class="btn-action btn-correct" onclick="manualCorrect()">
+        <i data-lucide="check" class="icon-action"></i>
+      </button>
     </div>
 
     <p id="tilt-hint" class="tilt-hint hidden">Kantelen werkt ook · omlaag = goed · omhoog = sla over</p>
 
     <!-- Flash overlay -->
     <div id="feedback" class="feedback">
-      <div id="fb-icon" class="fb-icon"></div>
+      <i id="fb-icon" data-lucide="check" class="icon-feedback"></i>
     </div>
 
   </div>
 
   <!-- ============ RESULTAAT ============ -->
   <div id="screen-results" class="screen">
-    <div class="results-bg"></div>
     <div class="center">
       <div id="result-stars" class="stars"></div>
       <div class="final-num" id="final-correct">0</div>
       <p class="final-lbl">goed geraden</p>
       <p class="skipped-count" id="final-skipped"></p>
       <div id="results-list" class="results-list"></div>
-      <button class="btn btn-primary" onclick="startGame()">Nog een ronde!</button>
-      <button class="btn btn-ghost"   onclick="showHome()">Naar begin</button>
+      <button class="btn btn-primary" onclick="startGame()">
+        <i data-lucide="refresh-cw" class="icon-btn"></i>
+        Nog een ronde!
+      </button>
+      <button class="btn btn-ghost" onclick="showHome()">Naar begin</button>
     </div>
   </div>
 
   <!-- Draai je telefoon (portrait) -->
   <div id="rotate-overlay">
     <div class="rotate-box">
-      <div class="rotate-icon">📱</div>
+      <i data-lucide="smartphone" class="icon-rotate"></i>
       <p>Draai je telefoon!</p>
       <p class="rotate-sub">Dit spel werkt liggend</p>
     </div>
@@ -91,5 +116,9 @@
   <script src="js/cards.js"></script>
   <script src="js/tilt.js"></script>
   <script src="js/app.js"></script>
+  <script>
+    // Init Lucide icons after DOM is ready
+    document.addEventListener('DOMContentLoaded', () => lucide.createIcons());
+  </script>
 </body>
 </html>
