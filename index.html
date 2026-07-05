@@ -67,24 +67,25 @@
     <div class="game-top">
       <div id="timer" class="timer">60</div>
       <div id="score-display" class="score-pill">0</div>
+      <button class="btn-stop" onclick="endGame()">
+        <i data-lucide="square" class="icon-stop"></i>
+      </button>
     </div>
 
-    <div class="card-wrap">
-      <div id="card" class="card">
-        <div id="card-word" class="card-word">…</div>
-      </div>
-    </div>
-
-    <div class="game-btns">
+    <div class="game-middle">
       <button class="btn-action btn-skip" onclick="manualSkip()">
         <i data-lucide="arrow-right" class="icon-action"></i>
       </button>
+
+      <div id="card" class="card">
+        <div id="card-word" class="card-word">…</div>
+        <p id="tilt-hint" class="tilt-hint hidden">Kantelen werkt ook</p>
+      </div>
+
       <button class="btn-action btn-correct" onclick="manualCorrect()">
         <i data-lucide="check" class="icon-action"></i>
       </button>
     </div>
-
-    <p id="tilt-hint" class="tilt-hint hidden">Kantelen werkt ook · omlaag = goed · omhoog = sla over</p>
 
     <!-- Flash overlay -->
     <div id="feedback" class="feedback">
