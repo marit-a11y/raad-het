@@ -4,35 +4,37 @@ class TiltDetector {
     this.onSkip = null;
     this.isActive = false;
     this.lastTrigger = 0;
-    this.debounceMs = 1000;
-    this.neutralBeta = null;
-    this.threshold = 30;
+    this.debounceMs = 900;
+    this.neutral = { beta: 0, gamma: 0 };
+    this.threshold = 22;
     this._handler = this._handle.bind(this);
   }
 
-  // Returns 'granted' | 'denied' | 'unavailable'
+  // Must be called directly inside a tap handler (iOS requirement)
   async requestPermission() {
     if (!window.DeviceOrientationEvent) return 'unavailable';
     if (typeof DeviceOrientationEvent.requestPermission === 'function') {
       try {
-        const result = await DeviceOrientationEvent.requestPermission();
-        return result; // 'granted' or 'denied'
+        return await DeviceOrientationEvent.requestPermission(); // 'granted' | 'denied'
       } catch {
         return 'denied';
       }
     }
-    // Android / non-iOS: no permission needed
+    // Android / desktop — no dialog needed
     return 'granted';
+  }
+
+  needsPermissionDialog() {
+    return typeof DeviceOrientationEvent !== 'undefined' &&
+           typeof DeviceOrientationEvent.requestPermission === 'function';
   }
 
   start() {
     return new Promise((resolve) => {
       this.isActive = false;
-      this.neutralBeta = null;
 
-      // Capture one reading to calibrate neutral position
       const calibrate = (e) => {
-        this.neutralBeta = e.beta ?? 0;
+        this.neutral = { beta: e.beta ?? 0, gamma: e.gamma ?? 0 };
         window.removeEventListener('deviceorientation', calibrate);
         this.isActive = true;
         window.addEventListener('deviceorientation', this._handler, true);
@@ -40,17 +42,15 @@ class TiltDetector {
       };
 
       window.addEventListener('deviceorientation', calibrate);
-
-      // Fallback if no event fires within 600ms
       setTimeout(() => {
-        if (this.neutralBeta === null) {
-          this.neutralBeta = 0;
+        if (!this.isActive) {
+          this.neutral = { beta: 0, gamma: 0 };
           window.removeEventListener('deviceorientation', calibrate);
           this.isActive = true;
           window.addEventListener('deviceorientation', this._handler, true);
           resolve();
         }
-      }, 600);
+      }, 800);
     });
   }
 
@@ -64,8 +64,13 @@ class TiltDetector {
     const now = Date.now();
     if (now - this.lastTrigger < this.debounceMs) return;
 
-    const beta = e.beta ?? 0;
-    const delta = beta - this.neutralBeta;
+    const dBeta  = (e.beta  ?? 0) - this.neutral.beta;
+    const dGamma = (e.gamma ?? 0) - this.neutral.gamma;
+
+    // In landscape, gamma is de voor-achter-as.
+    // In portrait (of als gamma niet beweegt), valt beta terug.
+    // Gebruik de as die het meest beweegt.
+    const delta = Math.abs(dGamma) >= Math.abs(dBeta) ? dGamma : dBeta;
 
     if (delta > this.threshold) {
       this.lastTrigger = now;

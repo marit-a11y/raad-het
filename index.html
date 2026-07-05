@@ -49,7 +49,12 @@
           <p><b>Neus omhoog</b> = overslaan</p>
         </div>
       </div>
-      <button class="btn btn-primary" onclick="beginRound()">
+      <!-- Op iOS: eerst toestemming vragen (direct aan tap) -->
+      <button id="btn-permission" class="btn btn-primary" onclick="grantAndStart()" style="display:none">
+        <i data-lucide="smartphone" class="icon-btn"></i>
+        Sta kantelen toe
+      </button>
+      <button id="btn-start" class="btn btn-primary" onclick="beginRound()">
         <i data-lucide="timer" class="icon-btn"></i>
         Start! (60 sec)
       </button>
