@@ -1,17 +1,16 @@
 class TiltDetector {
   constructor() {
     this.onCorrect = null;
-    this.onSkip    = null;
     this.isActive  = false;
     this.lastTrigger = 0;
-    this.debounceMs  = 1200;
+    this.debounceMs  = 1500;
     this.neutralForward = 0;
-    this.threshold = 40;        // moet echt flink kantelen
-    this.neutralZone = 20;      // moet ver genoeg terugkomen
+    this.smoothed = 0;
+    this.threshold = 50;    // graden vanaf rustpositie
+    this.neutralZone = 20;  // moet ver genoeg terugkomen
     this.waitingForNeutral = false;
-    this.prev = 0;
-    this.velocityThreshold = 6; // moet ook snel genoeg gaan
     this._handler = this._handle.bind(this);
+    this._calibrated = false;
   }
 
   // angle=90  (landscape-primary):   neus omlaag → gamma daalt  → -gamma
@@ -43,24 +42,16 @@ class TiltDetector {
     return new Promise((resolve) => {
       this.isActive = false;
       this.waitingForNeutral = false;
+      this._calibrated = false;
+      let samples = [];
 
       const calibrate = (e) => {
-        this.neutralForward = this._forwardTilt(e);
-        this.prev = this.neutralForward;
-        window.removeEventListener('deviceorientation', calibrate);
-        window.removeEventListener('deviceorientationabsolute', calibrate);
-        this.isActive = true;
-        window.addEventListener('deviceorientation', this._handler, true);
-        window.addEventListener('deviceorientationabsolute', this._handler, true);
-        resolve();
-      };
-
-      window.addEventListener('deviceorientation', calibrate);
-      window.addEventListener('deviceorientationabsolute', calibrate);
-
-      setTimeout(() => {
-        if (!this.isActive) {
-          this.neutralForward = 0; this.prev = 0;
+        // Gemiddelde van 5 metingen als rustpositie
+        samples.push(this._forwardTilt(e));
+        if (samples.length >= 5) {
+          this.neutralForward = samples.reduce((a, b) => a + b, 0) / samples.length;
+          this.smoothed = this.neutralForward;
+          this._calibrated = true;
           window.removeEventListener('deviceorientation', calibrate);
           window.removeEventListener('deviceorientationabsolute', calibrate);
           this.isActive = true;
@@ -68,7 +59,22 @@ class TiltDetector {
           window.addEventListener('deviceorientationabsolute', this._handler, true);
           resolve();
         }
-      }, 800);
+      };
+
+      window.addEventListener('deviceorientation', calibrate);
+      window.addEventListener('deviceorientationabsolute', calibrate);
+
+      setTimeout(() => {
+        if (!this.isActive) {
+          this.neutralForward = this.smoothed = 0;
+          window.removeEventListener('deviceorientation', calibrate);
+          window.removeEventListener('deviceorientationabsolute', calibrate);
+          this.isActive = true;
+          window.addEventListener('deviceorientation', this._handler, true);
+          window.addEventListener('deviceorientationabsolute', this._handler, true);
+          resolve();
+        }
+      }, 1500);
     });
   }
 
@@ -81,19 +87,19 @@ class TiltDetector {
   _handle(e) {
     if (!this.isActive) return;
 
-    const forward  = this._forwardTilt(e);
-    const delta    = forward - this.neutralForward;
-    const velocity = forward - this.prev;
-    this.prev = forward;
+    const raw = this._forwardTilt(e);
+    // Exponential moving average om ruis te dempen (0.3 = traag, stabiel)
+    this.smoothed = this.smoothed * 0.7 + raw * 0.3;
+
+    const delta = this.smoothed - this.neutralForward;
 
     // Debug
     const dbg = document.getElementById('debug');
     if (dbg) {
       const angle = screen.orientation?.angle ?? '?';
-      dbg.textContent = `↕ ${forward.toFixed(0)}° Δ${delta.toFixed(0)} v${velocity.toFixed(1)} angle:${angle}${this.waitingForNeutral ? ' ⏸' : ''}`;
+      dbg.textContent = `raw:${raw.toFixed(0)}° smooth:${this.smoothed.toFixed(0)}° Δ${delta.toFixed(0)}°${this.waitingForNeutral ? ' ⏸' : ''}`;
     }
 
-    // Wacht tot telefoon terug in rustpositie is na vorige trigger
     if (this.waitingForNeutral) {
       if (Math.abs(delta) < this.neutralZone) this.waitingForNeutral = false;
       return;
@@ -102,13 +108,10 @@ class TiltDetector {
     const now = Date.now();
     if (now - this.lastTrigger < this.debounceMs) return;
 
-    const fastEnough = Math.abs(velocity) > this.velocityThreshold;
-    const farEnough  = Math.abs(delta)    > this.threshold;
-
-    if (fastEnough && farEnough) {
+    if (Math.abs(delta) > this.threshold) {
       this.lastTrigger = now;
       this.waitingForNeutral = true;
-      this.onCorrect?.(); // elke kantel = goed, richting maakt niet uit
+      this.onCorrect?.();
     }
   }
 }
