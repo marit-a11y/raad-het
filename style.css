@@ -184,17 +184,19 @@ h1 {
   letter-spacing: -.5px;
 }
 
-/* ---- Action buttons (links en rechts) ---- */
-.btn-action {
-  width: 64px; height: 64px; border-radius: 50%;
-  border: none; cursor: pointer; flex-shrink: 0;
+/* ---- Halve-scherm zones (links=skip, rechts=goed) ---- */
+.half-zone {
+  width: 80px; align-self: stretch; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
-  transition: transform .1s, filter .1s;
-  box-shadow: var(--shadow);
+  border-radius: var(--r-lg);
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+  transition: background .12s;
 }
-.btn-action:active { transform: scale(.88); filter: brightness(.9); }
-.btn-correct { background: #D4EDDA; color: #2A6A44; }
-.btn-skip    { background: var(--blush); color: #8A2A40; }
+.zone-skip    { background: rgba(242,196,206,.45); color: #8A2A40; }
+.zone-correct { background: rgba(212,237,218,.45); color: #2A6A44; }
+.zone-skip:active    { background: rgba(242,196,206,.85); }
+.zone-correct:active { background: rgba(212,237,218,.85); }
+.icon-zone { width: 2.2rem; height: 2.2rem; stroke: currentColor; stroke-width: 2.2; fill: none; pointer-events: none; }
 
 .tilt-hint {
   font-size: .65rem; color: var(--soft);
