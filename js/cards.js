@@ -16,7 +16,7 @@ const THUIS_VOORWERPEN = [
 "Airco",
   "Afstandsbediening", "Magnetron", "Trampoline", "Schommelstoel", "Appartement Amsterdam",
   "Lego", "Dumpling", "Needo", "Labubu", "Piano", "Skateboard", "Telefoon",
-  "Fiets", "Step", "Barbecue", "Tent", "Beamer","Hoofddorp", "Amsterdam", "Noorwegen", "Kroatie", "Ruzie", "Buitendouche", "Zwembad", "Handdoek", "Duikpak", "Zwembad", "Boot","Uniform", "Groep 4", 
+  "Fiets", "Step", "Barbecue", "Tent", "Beamer","Hoofddorp", "Amsterdam", "Noorwegen", "Kroatie", "Ruzie", "Buitendouche", "Zwembad", "Handdoek", "Duikpak", "Zwembad", "Boot","Uniform", "Groep 4", "Palapa", 
 
 ];
 
@@ -25,23 +25,23 @@ const THUIS_VOORWERPEN = [
 // ============================================================
 
 const DIEREN_KAARTEN = [
-  "Hond", "Lucky", "Zara", "Indra", "Leeuw", "Tijger",
-  "Aap", "Pinguïn", "Dolfijn", "Haai", "Papegaai", "Uil",
-  "Konijn", "Hamster", "Schildpad", "Krokodil", "Zebra",
-  "Neushoorn", "Nijlpaard", "Vlinder", "Bij", "Spin",
+  "Hond", "Lucky", "Zara", "Indra", "Tonni", "Brownie",
+  "Aap", "Pinguïn", "Dolfijn", "Haai", "Papegaai", "Plakiplaki",
+  "Patso", "Eend", "Schildpad", "Krokodil", "Zebra",
+  "Neushoorn", "Joker", "Vlinder", "Maribomba", "Spin",
   "Kikker", "Slang", "Koe", "Paard", "Schaap", "Varken",
   "Kip", "Eend", "Zwaan", "Panda", "Koala", "Kangoeroe",
   "Zeehond", "Octopus", "Mol", "Egel", "Vos", "Wolf",
   "Beer", "Flamingo", "Luipaard", "Kameel", "Lama",
-  "Zeepaard", "Salamander", "Ekster", "Specht", "Pauw",
-  "Struisvogel", "Walrus", "Bever", "Wasbeer", "Hyena",
-  "Gorilla", "Chimpansee", "Jaguar", "Poema", "Lynx",
-  "Marmot", "Otter", "Zeeleeuw", "Narwal", "Axolotl",
+  "Zeepaard", "Landkrab", "Kwal", "Specht", "Pauw",
+  "Struisvogel", "Walrus", "Bever", "Wasbeer", "Zeeegel",
+  "Gorilla", "Chimpansee", "Jaguar", "Poema", "Leguaan",
+  "Kip", "Warawara", "Zeeleeuw", "Gekko", "Axolotl",
 ];
 
 const FILMS_KAARTEN = [
   "Frozen", "Mamma Mia", "Broodhond", "Nijntje", "Up", "Shrek", "Minions",
-  "Tinkerbell", "Rambo", "Sing", "Dora", "Zootropolis",
+  "Tinkerbell", "Rambo", "Wievandedrie", "Dora", "Zootropolis",
   "Wednesday", "Smurfen", "Mickey Mouse", "Bambi", "Pinokkio",
   "Zoop", "Jeugdjournaal", "MAFS", "Winx", "K3",
   "Pokémon", "Naruto", "Avatar", "Bluey", "Paw Patrol",
@@ -91,7 +91,7 @@ const NATUUR_KAARTEN = [
   "Vulkaan", "Eiland", "Kust", "Tornado", "Hagel", "Mist",
   "Bloem", "Oud-Valkeveen", "Gras", "Cactus", "Paddenstoel",
   "Steen", "Zand", "Schelp", "Zeester", "Zonsondergang",
-  "Gletsjer", "Koraalrif", "Savanne", "Moeras", "Fjord",
+  "Gletsjer", "Koraalrif", "Savanne", "Moeras", "Palmboom",
 ];
 
 const VOORWERPEN_KAARTEN = [
