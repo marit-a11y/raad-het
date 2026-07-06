@@ -107,9 +107,8 @@ class TiltDetector {
 
     if (fastEnough && farEnough) {
       this.lastTrigger = now;
-      this.waitingForNeutral = true; // blokkeer tot telefoon terugkomt
-      if (delta > 0) this.onCorrect?.();
-      else           this.onSkip?.();
+      this.waitingForNeutral = true;
+      this.onCorrect?.(); // elke kantel = goed, richting maakt niet uit
     }
   }
 }
