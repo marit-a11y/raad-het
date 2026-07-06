@@ -4,13 +4,13 @@ class TiltDetector {
     this.onSkip    = null;
     this.isActive  = false;
     this.lastTrigger = 0;
-    this.debounceMs  = 600;
+    this.debounceMs  = 1200;
     this.neutralForward = 0;
-    this.threshold = 22;
-    this.neutralZone = 8;       // graden: "terug in rust" na een trigger
-    this.waitingForNeutral = false; // blokkeert terugzwaai-triggers
+    this.threshold = 40;        // moet echt flink kantelen
+    this.neutralZone = 20;      // moet ver genoeg terugkomen
+    this.waitingForNeutral = false;
     this.prev = 0;
-    this.velocityThreshold = 2.5;
+    this.velocityThreshold = 6; // moet ook snel genoeg gaan
     this._handler = this._handle.bind(this);
   }
 
