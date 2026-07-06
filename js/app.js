@@ -12,6 +12,14 @@ let wakeLock = null;
 // ---- Init ----
 document.addEventListener('DOMContentLoaded', () => {
   _lockLandscape();
+  // Volumeknoppen als skip (werkt op sommige Android-toestellen in Chrome)
+  window.addEventListener('keydown', (e) => {
+    if (e.keyCode === 24 || e.keyCode === 25 ||
+        e.key === 'AudioVolumeDown' || e.key === 'AudioVolumeUp') {
+      e.preventDefault();
+      manualSkip();
+    }
+  });
 });
 
 async function _lockLandscape() {
