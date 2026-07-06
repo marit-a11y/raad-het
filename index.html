@@ -62,12 +62,12 @@
   </div>
 
   <!-- ============ SPELEN ============ -->
-  <div id="screen-game" class="screen">
+  <div id="screen-game" class="screen" onclick="manualSkip()">
 
     <div class="game-top">
       <div id="timer" class="timer">60</div>
       <div id="score-display" class="score-pill">0</div>
-      <button class="btn-stop" onclick="endGame()">
+      <button class="btn-stop" onclick="event.stopPropagation(); endGame()">
         <i data-lucide="square" class="icon-stop"></i>
       </button>
     </div>
