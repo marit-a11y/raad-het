@@ -6,8 +6,12 @@
 const FAMILIE_KAARTEN = [
   // Namen van familie en vrienden (voeg zelf toe!):
   "Mama", "Papa", "Andere Opa", "Andere Oma", "Oude opa", "Oude oma",
-  // "Tante Laila", "Oom Bart", "Noor", "Nina", "Jazzlyn", "Chloë", "Amaya", "Anne-Sofie", "Maja", "Lorena", "Tess", "Heloise", "Nieuwe opa", "Nieuwe oma", "Oom Sander", "Tante Ebru", "Tante Tia", "Tante tasja", "Tante Titia", "Maksim", "Vincent", "Jessica", "Siliya", "Julie", "Richard", "Simon", "Sofia", "Luukie", "Dirk", "Inge", "Suze", "Julia", "Elin", "Liv", "Groep 4", "Juf Simone", "Meester Teun", "Meester Ted", "Vespucci", 
- 
+  "Tante Laila", "Oom Bart", "Noor", "Nina", "Jazzlyn", "Chloë", "Amaya",
+  "Anne-Sofie", "Maja", "Lorena", "Tess", "Heloise", "Nieuwe opa", "Nieuwe oma",
+  "Oom Sander", "Tante Ebru", "Tante Tia", "Tante Tasja", "Tante Titia",
+  "Maksim", "Vincent", "Jessica", "Siliya", "Julie", "Richard", "Simon",
+  "Sofia", "Luukie", "Dirk", "Inge", "Suze", "Julia", "Elin", "Liv",
+  "Juf Simone", "Meester Teun", "Meester Ted", "Vespucci",
 
 ];
 
