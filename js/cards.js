@@ -35,15 +35,17 @@ const DIEREN_KAARTEN = [
   "Beer", "Flamingo", "Luipaard", "Kameel", "Lama",
   "Zeepaard", "Salamander", "Ekster", "Specht", "Pauw",
   "Struisvogel", "Walrus", "Bever", "Wasbeer", "Hyena",
+  "Gorilla", "Chimpansee", "Jaguar", "Poema", "Lynx",
+  "Marmot", "Otter", "Zeeleeuw", "Narwal", "Axolotl",
 ];
 
 const FILMS_KAARTEN = [
-  "Frozen", "Mama mia", "Toy story", "Broodhond",
-  "Peppa big", "Lady en de Vagebond", "Nijntje", "Up", "Shrek", "Minions",
-  "Tinkerbell", "Wie is de Mol", "Wie van de drie", "Rambo", "Sing",
-  "MAFS", "The voice", "Salisch", "Dora", "Lion King",
-  "Bambi", "Pinokkio", "Netflix", "Zoop", "Zootropolis",
-  "Youtube", "Shorts", "De kleine zeemeermin", "Wednesday", "Disney", "Smurfen", "Jeugdjournaal", "Lucky Luke", "Home alone", "Mickey Mouse",
+  "Frozen", "Mamma Mia", "Broodhond", "Nijntje", "Up", "Shrek", "Minions",
+  "Tinkerbell", "Rambo", "Sing", "Dora", "Zootropolis",
+  "Wednesday", "Smurfen", "Mickey Mouse", "Bambi", "Pinokkio",
+  "Zoop", "Jeugdjournaal", "MAFS", "Winx", "K3",
+  "Pokémon", "Naruto", "Avatar", "Bluey", "Paw Patrol",
+  "Stranger Things", "Wednesday", "Squid Game",
 ];
 
 const ETEN_KAARTEN = [
@@ -51,21 +53,23 @@ const ETEN_KAARTEN = [
   "Aardbei", "Watermeloen", "Ananas", "Mango", "Druiven",
   "Sinaasappel", "Citroen", "Wortel", "Broccoli", "Komkommer",
   "Tomaat", "Paprika", "Kaas", "Chocolade", "Koekje",
-  "Arepa pampuna", "Ijs", "Wafel", "Pannenkoek", "Kokosmelk",
+  "Arepa", "Ijs", "Wafel", "Pannenkoek", "Kokosmelk",
   "Drop", "Hagelslag", "Pindakaas", "Cruesli",
   "Boterham", "Soep", "Rijst", "Stamppot", "Spaghetti",
   "Lasagne", "Salade", "Sushi", "Hotdog", "Popcorn",
   "Chips", "Yoghurt", "Smoothie", "Chocomel", "Speculaas",
-  "Oliebol", "Croissant", "Vlees",
+  "Oliebol", "Croissant", "Marshmallow", "Kauwgom", "Lolly",
+  "Taco", "Burrito", "Nasi", "Bami", "Satay",
 ];
 
 const SPORT_KAARTEN = [
   "Voetbal", "Basketbal", "Tennis", "Zwemmen", "Fietsen",
   "Hardlopen", "Skiën", "Schaatsen", "Volleybal", "Handbal",
   "Turnen", "Paardrijden", "Surfen", "Klimmen",
-  "Judo", "Karate", "Tikkertje", "Boomhut",
+  "Judo", "Karate", "Tikkertje", "Bowlen",
   "Golf", "Rugby", "Hockey", "Dansen", "Ballet",
-  "Bowlen", "Hinkelen", "Tikken", "Duiken",
+  "Hinkelen", "Duiken", "Wielrennen", "Boogschie­ten",
+  "Skateboarden", "Breakdansen", "Schermen", "Roeien",
 ];
 
 const BEROEPEN_KAARTEN = [
@@ -75,17 +79,19 @@ const BEROEPEN_KAARTEN = [
   "Acteur", "Tandenfee", "Tuinman", "Postbode",
   "Vuilnisman", "Bouwvakker", "Dierenarts",
   "Apotheker", "Boer", "Visser", "Kapper",
-  "Neuriën", "Clown", "Goochelaar", "Danser",
-  "Fotograaf", "YouTuber", "Presentator", "Bewaker",
+  "Clown", "Goochelaar", "Danser", "Fotograaf",
+  "YouTuber", "Presentator", "Bewaker", "Bibliothecaris",
+  "Schoonmaker", "Chauffeur", "Makelaar", "Rechter",
 ];
 
 const NATUUR_KAARTEN = [
   "Zon", "Maan", "Ster", "Regenboog", "Wolk", "Regen",
-  "Sneeuw", "Bliksem", "Blue room", "Berg", "Noordkust", "Zweden",
+  "Sneeuw", "Bliksem", "Berg", "Noordkust", "Zweden",
   "Meer", "Waterval", "Woestijn", "Jungle", "Bos", "Muggenbult",
   "Vulkaan", "Eiland", "Kust", "Tornado", "Hagel", "Mist",
   "Bloem", "Oud-Valkeveen", "Gras", "Cactus", "Paddenstoel",
   "Steen", "Zand", "Schelp", "Zeester", "Zonsondergang",
+  "Gletsjer", "Koraalrif", "Savanne", "Moeras", "Fjord",
 ];
 
 const VOORWERPEN_KAARTEN = [
@@ -98,6 +104,39 @@ const VOORWERPEN_KAARTEN = [
   "Tandenborstel", "Zeep", "Handdoek", "Spiegel",
   "Klok", "Sleutels", "Portemonnee", "Puzzel", "Pop",
   "Trampoline", "Tent", "Slaapzak", "Verrekijker",
+  "Microscoop", "Telescoop", "Kompas", "Fakkel", "Zweefvliegtuig",
+];
+
+// Bekende personen en plaatsen — typisch 30 Seconds
+const MENSEN_KAARTEN = [
+  // Bekende Nederlanders
+  "Sinterklaas", "Zwarte Piet", "Koning Willem", "Koningin Maxima",
+  "Amalia", "Arjen Robben", "Johan Cruijff", "Max Verstappen",
+  "Famke Louise", "Ali B", "Gordon", "Marco Borsato",
+  // Internationaal (kinderen kennen ze)
+  "Taylor Swift", "Beyoncé", "Rihanna", "Justin Bieber",
+  "Ronaldo", "Messi", "Neymar", "LeBron James",
+  "Mickey Mouse", "Donald Duck", "Winnie the Pooh",
+  "Spiderman", "Batman", "Superman", "Wonder Woman",
+  "Harry Potter", "Hermione", "Voldemort", "Dumbledore",
+  "Elsa", "Anna", "Simba", "Pumba",
+  // Landen & steden (30 Seconds klassiek)
+  "Nederland", "België", "Duitsland", "Frankrijk", "Spanje",
+  "Italië", "Amerika", "Australië", "China", "Japan",
+  "Amsterdam", "Parijs", "Londen", "Rome", "New York",
+];
+
+const BEGRIPPEN_KAARTEN = [
+  // Klassieke 30 Seconds abstracte woorden
+  "Vakantie", "Verjaardag", "Feest", "Ziekenhuis", "School",
+  "Bibliotheek", "Pretpark", "Bioscoop", "Markt", "Supermarkt",
+  "Vliegveld", "Station", "Haven", "Museum", "Kasteel",
+  "Sprookje", "Avontuur", "Geheim", "Verrassing", "Magie",
+  "Vriendschap", "Familie", "Liefde", "Ruzie", "Kusje",
+  "Ochtend", "Nacht", "Winter", "Zomer", "Lente", "Herfst",
+  "Vuur", "Water", "Aarde", "Lucht", "Ijs",
+  "Muziek", "Dans", "Tekening", "Foto", "Film",
+  "Droom", "Angst", "Lachen", "Huilen", "Slapen",
 ];
 
 // ============================================================
@@ -114,4 +153,6 @@ const CATEGORIES = [
   { id: "natuur",    icon: "🌿",     cards: NATUUR_KAARTEN    },
   { id: "voorwerpen",icon: "🎒",     cards: VOORWERPEN_KAARTEN},
   { id: "thuis",     icon: "🏠",     cards: THUIS_VOORWERPEN  },
+  { id: "mensen",    icon: "⭐",     cards: MENSEN_KAARTEN    },
+  { id: "begrippen", icon: "💭",     cards: BEGRIPPEN_KAARTEN },
 ];

@@ -4,24 +4,25 @@ class TiltDetector {
     this.onSkip    = null;
     this.isActive  = false;
     this.lastTrigger = 0;
-    this.debounceMs  = 850;
+    this.debounceMs  = 600;
     this.neutralForward = 0;
-    this.threshold = 18;
+    this.threshold = 22;
+    this.neutralZone = 8;       // graden: "terug in rust" na een trigger
+    this.waitingForNeutral = false; // blokkeert terugzwaai-triggers
     this.prev = 0;
-    this.velocityThreshold = 3;
+    this.velocityThreshold = 2.5;
     this._handler = this._handle.bind(this);
   }
 
-  // Leest de "neus-omlaag" as correct, ongeacht landscape-richting.
-  // angle=90  (landscape-primary):   neus omlaag → gamma daalt  → gebruik -gamma
-  // angle=270 (landscape-secondary): neus omlaag → gamma stijgt → gebruik +gamma
+  // angle=90  (landscape-primary):   neus omlaag → gamma daalt  → -gamma
+  // angle=270 (landscape-secondary): neus omlaag → gamma stijgt → +gamma
   _forwardTilt(e) {
     const angle = screen.orientation?.angle ?? 0;
     const gamma = e.gamma ?? 0;
     const beta  = e.beta  ?? 0;
     if (Math.abs(angle - 90)  < 45) return -gamma;
     if (Math.abs(angle - 270) < 45) return  gamma;
-    return beta; // portret-fallback
+    return beta;
   }
 
   needsPermissionDialog() {
@@ -41,6 +42,7 @@ class TiltDetector {
   start() {
     return new Promise((resolve) => {
       this.isActive = false;
+      this.waitingForNeutral = false;
 
       const calibrate = (e) => {
         this.neutralForward = this._forwardTilt(e);
@@ -78,10 +80,9 @@ class TiltDetector {
 
   _handle(e) {
     if (!this.isActive) return;
-    const now = Date.now();
 
-    const forward = this._forwardTilt(e);
-    const delta   = forward - this.neutralForward;
+    const forward  = this._forwardTilt(e);
+    const delta    = forward - this.neutralForward;
     const velocity = forward - this.prev;
     this.prev = forward;
 
@@ -89,9 +90,16 @@ class TiltDetector {
     const dbg = document.getElementById('debug');
     if (dbg) {
       const angle = screen.orientation?.angle ?? '?';
-      dbg.textContent = `↕ ${forward.toFixed(0)}° (Δ${delta.toFixed(0)} v${velocity.toFixed(1)}) angle:${angle}`;
+      dbg.textContent = `↕ ${forward.toFixed(0)}° Δ${delta.toFixed(0)} v${velocity.toFixed(1)} angle:${angle}${this.waitingForNeutral ? ' ⏸' : ''}`;
     }
 
+    // Wacht tot telefoon terug in rustpositie is na vorige trigger
+    if (this.waitingForNeutral) {
+      if (Math.abs(delta) < this.neutralZone) this.waitingForNeutral = false;
+      return;
+    }
+
+    const now = Date.now();
     if (now - this.lastTrigger < this.debounceMs) return;
 
     const fastEnough = Math.abs(velocity) > this.velocityThreshold;
@@ -99,8 +107,9 @@ class TiltDetector {
 
     if (fastEnough && farEnough) {
       this.lastTrigger = now;
-      if (delta > 0) this.onCorrect?.(); // neus omlaag = goed
-      else           this.onSkip?.();    // neus omhoog = overslaan
+      this.waitingForNeutral = true; // blokkeer tot telefoon terugkomt
+      if (delta > 0) this.onCorrect?.();
+      else           this.onSkip?.();
     }
   }
 }
