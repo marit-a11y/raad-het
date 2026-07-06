@@ -5,15 +5,19 @@
 
 const FAMILIE_KAARTEN = [
   // Namen van familie en vrienden (voeg zelf toe!):
-  "Mama", "Papa", "Opa", "Oma",
-  // "Tante", "Oom", "Noor", "Lotte", "Sem",
+  "Mama", "Papa", "Andere Opa", "Andere Oma", "Oude opa", "Oude oma",
+  // "Tante Laila", "Oom Bart", "Noor", "Nina", "Jazzlyn", "Chloë", "Amaya", "Anne-Sofie", "Maja", "Lorena", "Tess", "Heloise", "Nieuwe opa", "Nieuwe oma", "Oom Sander", "Tante Ebru", "Tante Tia", "Tante tasja", "Tante Titia", "Maksim", "Vincent", "Jessica", "Siliya", "Julie", "Richard", "Simon", "Sofia", "Luukie", "Dirk", "Inge", "Suze", "Julia", "Elin", "Liv", "Groep 4", "Juf Simone", "Meester Teun", "Meester Ted", "Vespucci", 
+ 
+
 ];
 
 const THUIS_VOORWERPEN = [
-  "Vaatwasser", "Stofzuiger", "Wasmachine", "Koelkast",
-  "Afstandsbediening", "Magnetron", "Trampoline",
-  "Lego", "Puzzel", "Speelkaarten", "Gitaar", "Piano",
-  "Fiets", "Scooter", "Barbecue", "Tent", "Slaapzak",
+  "Vaatwasser",  "Six-seven", "Turnmat", "Was", "Koelkast",
+"Airco",
+  "Afstandsbediening", "Magnetron", "Trampoline", "Schommelstoel", "Appartement Amsterdam",
+  "Lego", "Dumpling", "Needo", "Labubu", "Piano", "Skateboard", "Telefoon",
+  "Fiets", "Step", "Barbecue", "Tent", "Beamer","Hoofddorp", "Amsterdam", "Noorwegen", "Kroatie", "Ruzie", "Buitendouche", "Zwembad", "Handdoek", "Duikpak", "Zwembad", "Boot","Uniform", "Groep 4", 
+
 ];
 
 // ============================================================
@@ -21,7 +25,7 @@ const THUIS_VOORWERPEN = [
 // ============================================================
 
 const DIEREN_KAARTEN = [
-  "Hond", "Kat", "Olifant", "Giraffe", "Leeuw", "Tijger",
+  "Hond", "Lucky", "Zara", "Indra", "Leeuw", "Tijger",
   "Aap", "Pinguïn", "Dolfijn", "Haai", "Papegaai", "Uil",
   "Konijn", "Hamster", "Schildpad", "Krokodil", "Zebra",
   "Neushoorn", "Nijlpaard", "Vlinder", "Bij", "Spin",
@@ -34,32 +38,32 @@ const DIEREN_KAARTEN = [
 ];
 
 const FILMS_KAARTEN = [
-  "Frozen", "Assepoester", "Sneeuwwitje", "Rapunzel",
-  "Vaiana", "Encanto", "Coco", "Up", "Shrek", "Minions",
-  "Brave", "Cars", "Luca", "Ratatouille", "Sing",
-  "Paddington", "Matilda", "Aladdin", "Mulan", "Tarzan",
-  "Bambi", "Pinokkio", "Dumbo", "Doornroosje", "Zootropolis",
-  "Bluey", "SpongeBob",
+  "Frozen", "Mama mia", "Toy story", "Broodhond",
+  "Peppa big", "Lady en de Vagebond", "Nijntje", "Up", "Shrek", "Minions",
+  "Tinkerbell", "Wie is de Mol", "Wie van de drie", "Rambo", "Sing",
+  "MAFS", "The voice", "Salisch", "Dora", "Lion King",
+  "Bambi", "Pinokkio", "Netflix", "Zoop", "Zootropolis",
+  "Youtube", "Shorts", "De kleine zeemeermin", "Wednesday", "Disney", "Smurfen", "Jeugdjournaal", "Lucky Luke", "Home alone", "Mickey Mouse",
 ];
 
 const ETEN_KAARTEN = [
-  "Pizza", "Pasta", "Hamburger", "Friet", "Appel", "Banaan",
+  "Pizza", "Pasta", "Hamburger", "Friet", "Appelsap", "Banaan",
   "Aardbei", "Watermeloen", "Ananas", "Mango", "Druiven",
   "Sinaasappel", "Citroen", "Wortel", "Broccoli", "Komkommer",
   "Tomaat", "Paprika", "Kaas", "Chocolade", "Koekje",
-  "Taart", "Ijs", "Wafel", "Pannenkoek", "Stroopwafel",
-  "Drop", "Hagelslag", "Pindakaas", "Cornflakes",
+  "Arepa pampuna", "Ijs", "Wafel", "Pannenkoek", "Kokosmelk",
+  "Drop", "Hagelslag", "Pindakaas", "Cruesli",
   "Boterham", "Soep", "Rijst", "Stamppot", "Spaghetti",
   "Lasagne", "Salade", "Sushi", "Hotdog", "Popcorn",
   "Chips", "Yoghurt", "Smoothie", "Chocomel", "Speculaas",
-  "Oliebol", "Croissant", "Beschuit",
+  "Oliebol", "Croissant", "Vlees",
 ];
 
 const SPORT_KAARTEN = [
   "Voetbal", "Basketbal", "Tennis", "Zwemmen", "Fietsen",
   "Hardlopen", "Skiën", "Schaatsen", "Volleybal", "Handbal",
   "Turnen", "Paardrijden", "Surfen", "Klimmen",
-  "Judo", "Karate", "Tafeltennis", "Badminton",
+  "Judo", "Karate", "Tikkertje", "Boomhut",
   "Golf", "Rugby", "Hockey", "Dansen", "Ballet",
   "Bowlen", "Hinkelen", "Tikken", "Duiken",
 ];
@@ -68,28 +72,28 @@ const BEROEPEN_KAARTEN = [
   "Dokter", "Tandarts", "Leraar", "Politieagent",
   "Brandweerman", "Verpleegster", "Kok", "Bakker",
   "Piloot", "Astronaut", "Schilder", "Muzikant",
-  "Acteur", "Schrijver", "Tuinman", "Postbode",
+  "Acteur", "Tandenfee", "Tuinman", "Postbode",
   "Vuilnisman", "Bouwvakker", "Dierenarts",
   "Apotheker", "Boer", "Visser", "Kapper",
-  "Taxichauffeur", "Clown", "Goochelaar", "Danser",
+  "Neuriën", "Clown", "Goochelaar", "Danser",
   "Fotograaf", "YouTuber", "Presentator", "Bewaker",
 ];
 
 const NATUUR_KAARTEN = [
   "Zon", "Maan", "Ster", "Regenboog", "Wolk", "Regen",
-  "Sneeuw", "Bliksem", "Storm", "Berg", "Rivier", "Zee",
-  "Meer", "Waterval", "Woestijn", "Jungle", "Bos", "Weide",
+  "Sneeuw", "Bliksem", "Blue room", "Berg", "Noordkust", "Zweden",
+  "Meer", "Waterval", "Woestijn", "Jungle", "Bos", "Muggenbult",
   "Vulkaan", "Eiland", "Kust", "Tornado", "Hagel", "Mist",
-  "Bloem", "Boom", "Gras", "Cactus", "Paddenstoel",
-  "Steen", "Zand", "Schelp", "Zeester", "IJsberg",
+  "Bloem", "Oud-Valkeveen", "Gras", "Cactus", "Paddenstoel",
+  "Steen", "Zand", "Schelp", "Zeester", "Zonsondergang",
 ];
 
 const VOORWERPEN_KAARTEN = [
   "Televisie", "Bank", "Tafel", "Stoel", "Bed", "Kussen",
-  "Deken", "Lamp", "Koelkast", "Oven", "Magnetron",
+  "Dekbed", "Lamp", "Koelkast", "Oven", "Magnetron",
   "Wasmachine", "Computer", "Telefoon", "Boek",
   "Fiets", "Auto", "Rugzak", "Koffer", "Paraplu",
-  "Zonnebril", "Pet", "Helm", "Handschoenen", "Laarzen",
+  "Zonnebril", "Tweeling", "Helm", "Handschoenen", "Laarzen",
   "Potlood", "Schaar", "Lijm", "Verf", "Liniaal",
   "Tandenborstel", "Zeep", "Handdoek", "Spiegel",
   "Klok", "Sleutels", "Portemonnee", "Puzzel", "Pop",
