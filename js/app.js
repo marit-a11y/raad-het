@@ -59,7 +59,7 @@ async function beginRound() {
   correctCount = 0;
   skippedCount = 0;
   gameResults = [];
-  timeLeft = 30;
+  timeLeft = 90;
 
   showScreen('screen-game');
   updateTimer();
