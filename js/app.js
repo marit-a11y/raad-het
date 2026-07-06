@@ -45,23 +45,13 @@ function buildDeck() {
 // ---- Start flow ----
 function startGame() {
   showScreen('screen-instructions');
-  // Op iOS: toon aparte "sta toe" knop zodat permission direct op een tap zit
-  const needsDialog = tiltDetector.needsPermissionDialog();
-  document.getElementById('btn-permission').style.display = needsDialog ? '' : 'none';
-  document.getElementById('btn-start').style.display      = needsDialog ? 'none' : '';
-  if (needsDialog) lucide.createIcons({ nodes: [document.getElementById('btn-permission')] });
+  document.getElementById('btn-permission').style.display = 'none';
+  document.getElementById('btn-start').style.display = '';
 }
 
-// iOS: permission + start in één tap
-async function grantAndStart() {
-  const perm = await tiltDetector.requestPermission();
-  _tiltGranted = perm === 'granted';
-  beginRound();
-}
+async function grantAndStart() { beginRound(); }
 
-let _tiltGranted = false; // gezet door grantAndStart of beginRound
-
-async function beginRound() {
+function beginRound() {
   gameCards = buildDeck();
   cardIndex = 0;
   correctCount = 0;
@@ -74,25 +64,6 @@ async function beginRound() {
   updateScore();
   showCard();
   _keepScreenOn();
-
-  // iOS: permission al gevraagd in grantAndStart() → _tiltGranted gezet
-  // Android: geen dialog nodig, hier direct toewijzen
-  let useTilt = _tiltGranted;
-  _tiltGranted = false; // reset voor volgende ronde
-
-  if (!useTilt && !tiltDetector.needsPermissionDialog()) {
-    const perm = await tiltDetector.requestPermission();
-    useTilt = perm === 'granted';
-  }
-
-  if (useTilt) {
-    tiltDetector.onCorrect = () => _answer(true);
-    tiltDetector.onSkip    = () => _answer(false);
-    await tiltDetector.start();
-    document.getElementById('tilt-hint').classList.remove('hidden');
-  } else {
-    document.getElementById('tilt-hint').classList.add('hidden');
-  }
 
   timerInterval = setInterval(_tick, 1000);
 }
